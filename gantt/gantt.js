@@ -1,64 +1,33 @@
-/**
- * @author Dimitry Kudrayvtsev
- * @version 2.0
- *
- * Ported to d3 v4 by Keyvan Fatehi on October 16th, 2016
- */
-
 d3.gantt = function() {
-  var FIT_TIME_DOMAIN_MODE = "fit";
-  var FIXED_TIME_DOMAIN_MODE = "fixed";
+  var timeDomainStart;
+  var timeDomainEnd;
+  var magin;
+  var warClasses = [];
+  var warNames = [];
+  var tickFormat = "%Y-%m";
 
-  var margin = {
-    top : 20,
-    right : 40,
-    bottom : 20,
-    left : 150
-  };
-  var timeDomainStart = d3.timeDay.offset(new Date(),-3);
-  var timeDomainEnd = d3.timeHour.offset(new Date(),+3);
-  var timeDomainMode = FIT_TIME_DOMAIN_MODE;// fixed or fit
-  var taskTypes = [];
-  var taskStatus = [];
-  var height = document.body.clientHeight - margin.top - margin.bottom-5;
-  var width = document.body.clientWidth - margin.right - margin.left-5;
 
-  var tickFormat = "%H:%M";
-
-  var keyFunction = function(d) {
-    return d.startDate + d.taskName + d.endDate;
-  };
-
-  var rectTransform = function(d) {
-    return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
-  };
-
-  var x,y,xAxis,yAxis;
-
-  initAxis();
-
-  var initTimeDomain = function() {
-    if (timeDomainMode === FIT_TIME_DOMAIN_MODE) {
-      if (tasks === undefined || tasks.length < 1) {
-        timeDomainStart = d3.time.day.offset(new Date(), -3);
-        timeDomainEnd = d3.time.hour.offset(new Date(), +3);
-        return;
-      }
-      tasks.sort(function(a, b) {
-        return a.endDate - b.endDate;
-      });
-      timeDomainEnd = tasks[tasks.length - 1].endDate;
-      tasks.sort(function(a, b) {
-        return a.startDate - b.startDate;
-      });
-      timeDomainStart = tasks[0].startDate;
+  var initTimeDomain = function(data) {
+    if(data === undefined || data.length < 1){
+      timeDomainStart = d3.time.day.offset(new Date(), -3);
+      timeDomainEnd = d3.time.hour.offset(new Date(), +3);
+      return;
     }
+
+    data.sort(function(a, b) {
+      return a.endDate - b.endDate;
+    });
+    timeDomainEnd = data[data.length - 1].endDate;
+    data.sort(function(a, b) {
+      return a.startDate - b.startDate;
+    });
+    timeDomainStart = data[0].startDate;
   };
 
- function initAxis() {
-    x = d3.scaleTime().domain([ timeDomainStart, timeDomainEnd ]).range([ 0, width ]).clamp(true);
+   function initAxis() {
+    x = d3.scaleTime().domain([ timeDomainStart, timeDomainEnd ]).range([ 0, width ]);
 
-    y = d3.scaleBand().domain(taskTypes).rangeRound([ 0, height - margin.top - margin.bottom ], .1);
+    y = d3.scaleBand().domain(warNames).range([ 0, height - margin.top - margin.bottom ]).padding(0.1);
 
     xAxis = d3.axisBottom().scale(x).tickFormat(d3.timeFormat(tickFormat))
       .tickSize(8).tickPadding(8);
@@ -66,9 +35,9 @@ d3.gantt = function() {
     yAxis = d3.axisLeft().scale(y).tickSize(0);
   };
 
-  function gantt(tasks) {
+   function gantt(data) {
 
-    initTimeDomain();
+    initTimeDomain(data);
     initAxis();
 
     var svg = d3.select("body")
@@ -81,19 +50,19 @@ d3.gantt = function() {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-
+    
     svg.selectAll(".chart")
-      .data(tasks, keyFunction).enter()
+      .data(data, keyFunction).enter()
       .append("rect")
       .attr("rx", 5)
       .attr("ry", 5)
       .attr("class", function(d){ 
-        if(taskStatus[d.status] == null){ return "bar";}
-        return taskStatus[d.status];
+        if(warClasses[d.class] == null){ return "bar";}
+        return warClasses[d.class];
       }) 
       .attr("y", 0)
       .attr("transform", rectTransform)
-      .attr("height", function(d) { return 70; })
+      .attr("height", function(d) { return y.bandwidth(); })
       .attr("width", function(d) { 
         return (x(d.endDate) - x(d.startDate)); 
       });
@@ -110,37 +79,36 @@ d3.gantt = function() {
 
   };
 
-  gantt.redraw = function(tasks) {
+  gantt.redraw = function(newData) {
 
-    initTimeDomain();
+    initTimeDomain(newData);
     initAxis();
 
     var svg = d3.select("svg");
-
     var ganttChartGroup = svg.select(".gantt-chart");
-    var rect = ganttChartGroup.selectAll("rect").data(tasks, keyFunction);
+    var rect = ganttChartGroup.selectAll("rect").data(newData, keyFunction);
 
     rect.enter()
       .insert("rect",":first-child")
       .attr("rx", 5)
       .attr("ry", 5)
       .attr("class", function(d){ 
-        if(taskStatus[d.status] == null){ return "bar";}
-        return taskStatus[d.status];
+        if(warClasses[d.class] == null){ return "bar";}
+        return warClasses[d.class];
       }) 
       .transition()
       .attr("y", 0)
       .attr("transform", rectTransform)
-      .attr("height", function(d) { return y.range()[1]; })
+      .attr("height", function(d) { return y.bandwidth(); })
       .attr("width", function(d) { 
-        return (x(d.endDate) - x(d.startDate)); 
+         return (x(d.endDate) - x(d.startDate)); 
       });
 
-      rect.transition()
+      rect.merge(rect).transition()
         .attr("transform", rectTransform)
-        .attr("height", function(d) { return y.range()[1]; })
+        .attr("height", function(d) { return y.bandwidth(); })
         .attr("width", function(d) { 
-          return (x(d.endDate) - x(d.startDate)); 
+           return (x(d.endDate) - x(d.startDate));
         });
 
         rect.exit().remove();
@@ -151,6 +119,14 @@ d3.gantt = function() {
         return gantt;
   };
 
+  var rectTransform = function(d) {
+    return "translate(" + x(d.startDate) + "," + y(d.warName) + ")";
+  };
+
+  var keyFunction = function(d) {
+    return d.startDate + d.warName + d.endDate;
+  };
+
   gantt.margin = function(value) {
     if (!arguments.length)
       return margin;
@@ -158,37 +134,17 @@ d3.gantt = function() {
     return gantt;
   };
 
-  gantt.timeDomain = function(value) {
+  gantt.warNames = function(value) {
     if (!arguments.length)
-      return [ timeDomainStart, timeDomainEnd ];
-    timeDomainStart = +value[0], timeDomainEnd = +value[1];
+      return warNames;
+    warNames = value;
     return gantt;
   };
 
-    /**
-  * @param {string}
-  *                vale The value can be "fit" - the domain fits the data or
-  *                "fixed" - fixed domain.
-  */
-  gantt.timeDomainMode = function(value) {
+  gantt.warClasses = function(value) {
     if (!arguments.length)
-      return timeDomainMode;
-    timeDomainMode = value;
-    return gantt;
-
-  };
-
-  gantt.taskTypes = function(value) {
-    if (!arguments.length)
-      return taskTypes;
-    taskTypes = value;
-    return gantt;
-  };
-
-  gantt.taskStatus = function(value) {
-    if (!arguments.length)
-      return taskStatus;
-    taskStatus = value;
+      return warClasses;
+    warClasses = value;
     return gantt;
   };
 
