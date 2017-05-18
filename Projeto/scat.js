@@ -1,5 +1,13 @@
 class Scatterplot {
 
+	// {
+	// 	name:	nome da guerra
+	// 	x:		duração
+	// 	y:		vidas perdidas
+	// 	value:	
+	// 	class:	tipo de guerra?
+	// }
+
 	constructor(arg) {
 
 		this.id = arg.id;
@@ -15,12 +23,13 @@ class Scatterplot {
 
 		this.param = {
 			margin: {left: 30, right: 10, top: 10, bottom: 20},
-			circles: {radius: 4},
+			elements: {radius: 4},
+			zoom: {extent: [1/4, 32]},
 			tooltip: {x: 5, y: -20, on: 400, off: 100}
 		};
 
 		this.classes = {
-			circles: "",
+			elements: "",
 			axes: {x: "", y: ""},
 			tooltip: "label label-primary",
 			hide: "hidden"
@@ -32,7 +41,7 @@ class Scatterplot {
 		this.setDataset(arg.dataset);
 		this.setAxes();
 
-		// this.setZoom();
+		this.setZoom();
 		this.setTooltip();
 		
 		// this.setBrush();
@@ -40,11 +49,10 @@ class Scatterplot {
 
 	setMargin() {
 
-		this.total_width = this.width;
-		this.total_height = this.height;
-
 		this.width -= (this.param.margin.left + this.param.margin.right);
 		this.height -= (this.param.margin.top + this.param.margin.bottom);
+
+		this.view = this.canvas.append("g");
 
 		this.canvas.attr("transform", "translate(" + (this.x + this.param.margin.left) + "," + (this.y + this.param.margin.top) + ")");
 	}
@@ -64,7 +72,7 @@ class Scatterplot {
 		this.x_scale.domain(d3.extent(this.dataset, function(d) { return d.x; }));
 		this.y_scale.domain(d3.extent(this.dataset, function(d) { return d.y; }));
 
-		this.elements = this.canvas.selectAll("circle")
+		this.elements = this.view.selectAll("circle")
 			.data(this.dataset);
 
 		this.elements.exit()
@@ -75,8 +83,8 @@ class Scatterplot {
 			.merge(this.elements)
 			.attr("cx", function(d) { return that.x_scale(d.x); })
 			.attr("cy", function(d) { return that.y_scale(d.y); })
-			.attr("r", this.param.circles.radius)
-			.attr("class", this.classes.circles);
+			.attr("r", this.param.elements.radius)
+			.attr("class", this.classes.elements);
 	}
 
 	setAxes() {
@@ -96,7 +104,18 @@ class Scatterplot {
 	}
 
 	setZoom() {
+
+		var that = this;
 		
+		this.zoom = d3.zoom()
+			.scaleExtent(this.param.zoom.extent)
+			.on("zoom", function() {
+				that.view.attr("transform", d3.event.transform);
+				that.x_axis_group.call(that.x_axis.scale(d3.event.transform.rescaleX(that.x_scale)));
+				that.y_axis_group.call(that.y_axis.scale(d3.event.transform.rescaleY(that.y_scale)));
+			});
+
+		this.zoom(this.container);
 	}
 
 	setTooltip() {
