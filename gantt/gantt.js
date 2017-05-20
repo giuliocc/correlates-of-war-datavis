@@ -2,10 +2,14 @@ d3.gantt = function() {
   var timeDomainStart;
   var timeDomainEnd;
   var magin;
+  var chart;
+  var gX;
+  var gY;
+  var xAxis;
+  var yAxis;
   var warClasses = [];
   var warNames = [];
   var tickFormat = "%Y-%m";
-
 
   var initTimeDomain = function(data) {
     if(data === undefined || data.length < 1){
@@ -24,9 +28,13 @@ d3.gantt = function() {
     timeDomainStart = data[0].startDate;
   };
 
+  function zoomed() {
+    chart.attr("transform", d3.event.transform);
+    gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
+  };
+
    function initAxis() {
     x = d3.scaleTime().domain([ timeDomainStart, timeDomainEnd ]).range([ 0, width ]);
-
     y = d3.scaleBand().domain(warNames).range([ 0, height - margin.top - margin.bottom ]).padding(0.1);
 
     xAxis = d3.axisBottom().scale(x).tickFormat(d3.timeFormat(tickFormat))
@@ -45,13 +53,19 @@ d3.gantt = function() {
       .attr("class", "chart")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-      .append("g")
+
+    chart = svg.append("g")
       .attr("class", "gantt-chart")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+    var zoom = d3.zoom()
+      .scaleExtent([1, 40])
+      .translateExtent([[-100, -100], [width + 90, height + 100]])
+      .on("zoom", zoomed);
     
-    svg.selectAll(".chart")
+    chart.selectAll(".chart")
       .data(data, keyFunction).enter()
       .append("rect")
       .attr("rx", 5)
@@ -67,14 +81,16 @@ d3.gantt = function() {
         return (x(d.endDate) - x(d.startDate)); 
       });
 
-      svg.append("g")
+
+      gX = chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0, " + (height - margin.top - margin.bottom) + ")")
         .transition()
         .call(xAxis);
 
-      svg.append("g").attr("class", "y axis").transition().call(yAxis);
+      //gY = chart.append("g").attr("class", "y axis").transition().call(yAxis);
 
+      svg.call(zoom);
       return gantt;
 
   };
@@ -95,7 +111,7 @@ d3.gantt = function() {
       .attr("class", function(d){ 
         if(warClasses[d.class] == null){ return "bar";}
         return warClasses[d.class];
-      }) 
+      })
       .transition()
       .attr("y", 0)
       .attr("transform", rectTransform)

@@ -25,6 +25,6 @@ var minDate = wars[0].startDate;
 var format = "%Y:%m";
 
 var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses)
-.margin({top : 20, right : 40, bottom : 20, left : 150});
+.margin({top : 20, right : 40, bottom : 20, left : 50});
 gantt(wars)
-//gantt.redraw(wars)
+gantt.redraw(wars)
