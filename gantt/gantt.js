@@ -57,6 +57,12 @@ d3.gantt = function() {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
 
+    axis_canvas = svg.append("g")
+      .attr("class", "gantt-axis")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
     chart = svg.append("g")
       .attr("class", "gantt-chart")
       .attr("width", width + margin.left + margin.right)
@@ -98,7 +104,8 @@ d3.gantt = function() {
       });
 
 
-      gX = chart.append("g")
+      gX = axis_canvas
+        .append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0, " + (height - margin.top - margin.bottom) + ")")
         .transition()
