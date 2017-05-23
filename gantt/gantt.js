@@ -10,6 +10,9 @@ d3.gantt = function() {
   var warClasses = [];
   var warNames = [];
   var tickFormat = "%Y-%m";
+  var div = d3.select("body").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
 
   var initTimeDomain = function(data) {
     if(data === undefined || data.length < 1){
@@ -70,6 +73,19 @@ d3.gantt = function() {
       .append("rect")
       .attr("rx", 5)
       .attr("ry", 5)
+      .on("mouseover", function(d) {
+        div.transition()
+          .duration(200)
+        .style("opacity", .9);
+        div.html(d.warName)
+        .style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+        div.transition()
+        .duration(500)
+        .style("opacity", 0);
+      })
       .attr("class", function(d){ 
         if(warClasses[d.class] == null){ return "bar";}
         return warClasses[d.class];
