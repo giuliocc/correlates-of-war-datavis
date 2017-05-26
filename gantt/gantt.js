@@ -1,7 +1,7 @@
 d3.gantt = function() {
   var timeDomainStart;
   var timeDomainEnd;
-  var magin;
+  var margin = {top : 20, right : 40, bottom : 20, left : 10};
   var chart;
   var gX;
   var gY;
@@ -9,7 +9,7 @@ d3.gantt = function() {
   var yAxis;
   var warClasses = [];
   var warNames = [];
-  var tickFormat = "%Y-%m";
+  var tickFormat = "%Y-%m-%d";
   var div = d3.select("body").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
@@ -32,7 +32,19 @@ d3.gantt = function() {
   };
 
   function zoomed() {
-    chart.attr("transform", d3.event.transform);
+    var event = d3.event.transform;
+    //event.x += margin.left;
+    //event.y += margin.top;
+    chart.selectAll(".bar").attr("transform", event);
+    //event.x -= margin.left;
+    //event.y -= margin.top;
+
+    chart.attr("clip-path", 'url(#clip-gantt)');
+
+    chart.selectAll(".bar")
+    .attr("x", function(d){ return x(d.startDate)})
+    .attr("y", function(d){ return y(d.warName)});
+
     gX.call(xAxis.scale(d3.event.transform.rescaleX(x)));
   };
 
@@ -59,15 +71,20 @@ d3.gantt = function() {
 
     axis_canvas = svg.append("g")
       .attr("class", "gantt-axis")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+    svg.append("defs").append("clipPath")
+      .attr("id", "clip-gantt")
+      .append("rect")
+      .attr("width", width)
+      .attr("height", height-margin.top-margin.bottom);
+      //.attr("x", margin.left);
 
     chart = svg.append("g")
       .attr("class", "gantt-chart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+      .attr("width", width-margin.left)
+      .attr("height", height-margin.top)
+      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")"); 
 
     var zoom = d3.zoom()
       .scaleExtent([1, 40])
@@ -92,17 +109,15 @@ d3.gantt = function() {
         .duration(500)
         .style("opacity", 0);
       })
-      .attr("class", function(d){ 
-        if(warClasses[d.class] == null){ return "bar";}
-        return warClasses[d.class];
-      }) 
+      .on("click", function(d){ clickedWar = d.warName; console.log(clickedWar);})
+      .attr("class", "bar")
+      .attr("id", function(d){return d.warName}) 
       .attr("y", 0)
       .attr("transform", rectTransform)
       .attr("height", function(d) { return y.bandwidth(); })
       .attr("width", function(d) { 
         return (x(d.endDate) - x(d.startDate)); 
       });
-
 
       gX = axis_canvas
         .append("g")
@@ -164,13 +179,6 @@ d3.gantt = function() {
 
   var keyFunction = function(d) {
     return d.startDate + d.warName + d.endDate;
-  };
-
-  gantt.margin = function(value) {
-    if (!arguments.length)
-      return margin;
-    margin = value;
-    return gantt;
   };
 
   gantt.warNames = function(value) {
