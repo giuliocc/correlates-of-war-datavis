@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cloud Demo</title>
+</head>
+    <body>
+        <script src="./source/node_modules/d3/d3.js"></script>
+        <script src="./source/node_modules/d3-cloud/build/d3.layout.cloud.js"></script>
+        <script src="./source/datasets/war_texts_dataset/inter_war_texts.js"></script>"
+        <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
+    
+        <script>
+            var mySVG = d3.select("body")
+                .append("svg")
+                .attr("width","800")
+                .attr("height","600");
+            var myWordcloud = new Wordcloud({war_id: 1, x: 0, y: 0, width: 200, height: 100, container: mySVG, id: "wc"});
+        </script>
+
+    </body>
+</html>
