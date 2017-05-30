@@ -7,15 +7,65 @@
     <body>
         <script src="./source/node_modules/d3/d3.js"></script>
         <script src="./source/node_modules/d3-cloud/build/d3.layout.cloud.js"></script>
-        <script src="./source/datasets/war_texts_dataset/inter_war_texts.js"></script>"
+        <script src="./source/datasets/war_texts_dataset/inter_war_texts.js"></script>
         <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
+        <script src="./source/node_modules/gantt/gantt.js"></script>
     
         <script>
             var mySVG = d3.select("body")
                 .append("svg")
-                .attr("width","800")
+                .attr("width","1000")
                 .attr("height","600");
-            var myWordcloud = new Wordcloud({war_id: 1, x: 0, y: 0, width: 200, height: 100, container: mySVG, id: "wc"});
+
+            var wars = [];
+            var warNames = [];
+            var warClasses = [];
+
+            d3.json("./source/datasets/war_dataset/inter_war_data.json", function(json){
+                var data = json.war_data;
+
+                for (var i = data.length - 1; i >= 0; i--) {
+                    if((wars.length == 0) || (wars.filter(function(d){return d.warName === data[i].war_name;})[0] == undefined)){
+                        wars.push({ 
+                            "warName": data[i].war_name,
+                            "class": data[i].war_type,
+                            "startDate": new Date(data[i].start_year1, data[i].start_month1, data[i].start_day1),
+                            "endDate": new Date(data[i].end_year1, data[i].end_month1, data[i].end_day1)
+                        });
+
+                        warNames.push(data[i].war_name);
+                    }
+                    else{
+                        var i_startDate = new Date(data[i].start_year1, data[i].start_month1, data[i].start_day1);
+                        var i_endDate =  new Date(data[i].end_year1, data[i].end_month1, data[i].end_day1);
+
+                        if( i_endDate > wars[wars.length-1].endDate){
+                            wars[wars.length-1].endDate = i_endDate;
+                        }
+                        if( i_startDate < wars[wars.length-1].startDate){
+                            wars[wars.length-1].startDate = i_startDate;
+                        }
+                    }
+
+                    if((warClasses.length == 0) || (warClasses.filter(function(d){return d === data[i].war_type;})[0] == undefined)){
+                        warClasses.push(data[i].war_type);
+                    }
+
+                }
+
+                wars.sort(function(a, b) {
+                    return a.endDate - b.endDate;
+                });
+                var maxDate = wars[wars.length - 1].endDate;
+                var minDate = wars[0].startDate;
+
+                var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
+                gantt(wars)
+                var wcContainer = d3.select('svg').selectAll('.tooltip');
+                console.log(wcContainer.empty())
+                var myWordcloud = new Wordcloud({war_id: 1, x: 0, y: 0, width: 200, height: 100, container: wcContainer, id: "wc"});
+            });
+                
         </script>
 
     </body>
