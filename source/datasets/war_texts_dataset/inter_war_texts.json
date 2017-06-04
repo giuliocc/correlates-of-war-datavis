@@ -313,10 +313,6 @@
                 "size": 7
             }, 
             {
-                "text": "000", 
-                "size": 7
-            }, 
-            {
                 "text": "men", 
                 "size": 6
             }, 
@@ -378,6 +374,10 @@
             }, 
             {
                 "text": "christian", 
+                "size": 4
+            }, 
+            {
+                "text": "1848", 
                 "size": 4
             }
         ]
@@ -1668,10 +1668,6 @@
                 "size": 17
             }, 
             {
-                "text": "000", 
-                "size": 13
-            }, 
-            {
                 "text": "uruguay", 
                 "size": 11
             }, 
@@ -1757,6 +1753,10 @@
             }, 
             {
                 "text": "independence", 
+                "size": 5
+            }, 
+            {
+                "text": "another", 
                 "size": 5
             }
         ]
@@ -1954,10 +1954,6 @@
                 "size": 9
             }, 
             {
-                "text": "000", 
-                "size": 9
-            }, 
-            {
                 "text": "men", 
                 "size": 8
             }, 
@@ -2008,6 +2004,10 @@
             {
                 "text": "well", 
                 "size": 7
+            }, 
+            {
+                "text": "world", 
+                "size": 7
             }
         ]
     }, 
@@ -2021,10 +2021,6 @@
             {
                 "text": "french", 
                 "size": 12
-            }, 
-            {
-                "text": "000", 
-                "size": 10
             }, 
             {
                 "text": "enemy", 
@@ -2048,6 +2044,10 @@
             }, 
             {
                 "text": "german", 
+                "size": 7
+            }, 
+            {
+                "text": "000", 
                 "size": 7
             }, 
             {
@@ -2309,10 +2309,6 @@
                 "size": 7
             }, 
             {
-                "text": "000", 
-                "size": 7
-            }, 
-            {
                 "text": "battle", 
                 "size": 6
             }, 
@@ -2345,6 +2341,10 @@
                 "size": 5
             }, 
             {
+                "text": "campaign", 
+                "size": 5
+            }, 
+            {
                 "text": "lima", 
                 "size": 5
             }, 
@@ -2369,10 +2369,6 @@
                 "size": 5
             }, 
             {
-                "text": "campaign", 
-                "size": 5
-            }, 
-            {
                 "text": "complete", 
                 "size": 5
             }, 
@@ -2386,6 +2382,10 @@
             }, 
             {
                 "text": "strong", 
+                "size": 4
+            }, 
+            {
+                "text": "place", 
                 "size": 4
             }
         ]
@@ -3272,7 +3272,7 @@
                 "size": 5
             }, 
             {
-                "text": "000", 
+                "text": "russian", 
                 "size": 5
             }
         ]
@@ -3668,10 +3668,6 @@
         "war_id": 106, 
         "words": [
             {
-                "text": "000", 
-                "size": 21
-            }, 
-            {
                 "text": "war", 
                 "size": 12
             }, 
@@ -3736,10 +3732,6 @@
                 "size": 4
             }, 
             {
-                "text": "employed", 
-                "size": 4
-            }, 
-            {
                 "text": "years", 
                 "size": 4
             }, 
@@ -3753,6 +3745,10 @@
             }, 
             {
                 "text": "russia", 
+                "size": 4
+            }, 
+            {
+                "text": "employed", 
                 "size": 4
             }, 
             {
@@ -3785,6 +3781,10 @@
             }, 
             {
                 "text": "men", 
+                "size": 3
+            }, 
+            {
+                "text": "africa", 
                 "size": 3
             }
         ]
@@ -3930,10 +3930,6 @@
                 "size": 27
             }, 
             {
-                "text": "000", 
-                "size": 25
-            }, 
-            {
                 "text": "greece", 
                 "size": 24
             }, 
@@ -4039,6 +4035,10 @@
             }, 
             {
                 "text": "balkan", 
+                "size": 6
+            }, 
+            {
+                "text": "military", 
                 "size": 6
             }
         ]
@@ -4454,10 +4454,6 @@
                 "size": 9
             }, 
             {
-                "text": "000", 
-                "size": 9
-            }, 
-            {
                 "text": "led", 
                 "size": 7
             }, 
@@ -4543,6 +4539,10 @@
             }, 
             {
                 "text": "lines", 
+                "size": 3
+            }, 
+            {
+                "text": "argentina", 
                 "size": 3
             }
         ]
@@ -4712,10 +4712,6 @@
                 "size": 16
             }, 
             {
-                "text": "000", 
-                "size": 15
-            }, 
-            {
                 "text": "mao", 
                 "size": 13
             }, 
@@ -4798,6 +4794,10 @@
             {
                 "text": "kmt", 
                 "size": 8
+            }, 
+            {
+                "text": "resistance", 
+                "size": 7
             }
         ]
     }, 
@@ -4842,10 +4842,6 @@
             }, 
             {
                 "text": "along", 
-                "size": 9
-            }, 
-            {
-                "text": "000", 
                 "size": 9
             }, 
             {
@@ -4922,6 +4918,10 @@
             }, 
             {
                 "text": "area", 
+                "size": 5
+            }, 
+            {
+                "text": "war", 
                 "size": 5
             }
         ]
@@ -5329,10 +5329,6 @@
                 "size": 92
             }, 
             {
-                "text": "000", 
-                "size": 81
-            }, 
-            {
                 "text": "jewish", 
                 "size": 81
             }, 
@@ -5427,6 +5423,10 @@
             {
                 "text": "aircraft", 
                 "size": 31
+            }, 
+            {
+                "text": "july", 
+                "size": 30
             }
         ]
     }, 
@@ -5468,10 +5468,6 @@
             {
                 "text": "un", 
                 "size": 84
-            }, 
-            {
-                "text": "000", 
-                "size": 77
             }, 
             {
                 "text": "army", 
@@ -5552,6 +5548,10 @@
             {
                 "text": "1951", 
                 "size": 33
+            }, 
+            {
+                "text": "communist", 
+                "size": 32
             }
         ]
     }, 
@@ -5970,10 +5970,6 @@
                 "size": 112
             }, 
             {
-                "text": "000", 
-                "size": 110
-            }, 
-            {
                 "text": "military", 
                 "size": 100
             }, 
@@ -6063,6 +6059,10 @@
             }, 
             {
                 "text": "support", 
+                "size": 31
+            }, 
+            {
+                "text": "arvn", 
                 "size": 31
             }
         ]
@@ -6171,10 +6171,6 @@
                 "size": 14
             }, 
             {
-                "text": "3", 
-                "size": 13
-            }, 
-            {
                 "text": "iaf", 
                 "size": 13
             }, 
@@ -6188,6 +6184,10 @@
             }, 
             {
                 "text": "despite", 
+                "size": 12
+            }, 
+            {
+                "text": "1st", 
                 "size": 12
             }
         ]
@@ -6246,10 +6246,6 @@
             {
                 "text": "syrian", 
                 "size": 39
-            }, 
-            {
-                "text": "000", 
-                "size": 38
             }, 
             {
                 "text": "attack", 
@@ -6313,6 +6309,10 @@
             }, 
             {
                 "text": "artillery", 
+                "size": 25
+            }, 
+            {
+                "text": "brigades", 
                 "size": 25
             }
         ]
@@ -6675,10 +6675,6 @@
                 "size": 4
             }, 
             {
-                "text": "2", 
-                "size": 4
-            }, 
-            {
                 "text": "border", 
                 "size": 4
             }, 
@@ -6688,6 +6684,10 @@
             }, 
             {
                 "text": "also", 
+                "size": 4
+            }, 
+            {
+                "text": "peace", 
                 "size": 4
             }
         ]
@@ -6742,10 +6742,6 @@
             {
                 "text": "forces", 
                 "size": 26
-            }, 
-            {
-                "text": "000", 
-                "size": 24
             }, 
             {
                 "text": "cambodian", 
@@ -6814,6 +6810,10 @@
             {
                 "text": "american", 
                 "size": 15
+            }, 
+            {
+                "text": "minister", 
+                "size": 14
             }
         ]
     }, 
@@ -6850,7 +6850,7 @@
             }, 
             {
                 "text": "1971", 
-                "size": 34
+                "size": 33
             }, 
             {
                 "text": "military", 
@@ -6879,10 +6879,6 @@
             {
                 "text": "rahman", 
                 "size": 22
-            }, 
-            {
-                "text": "000", 
-                "size": 21
             }, 
             {
                 "text": "march", 
@@ -6939,6 +6935,10 @@
             {
                 "text": "general", 
                 "size": 14
+            }, 
+            {
+                "text": "china", 
+                "size": 13
             }
         ]
     }, 
@@ -7062,7 +7062,7 @@
                 "size": 43
             }, 
             {
-                "text": "000", 
+                "text": "day", 
                 "size": 41
             }
         ]
@@ -7236,10 +7236,6 @@
                 "size": 41
             }, 
             {
-                "text": "000", 
-                "size": 40
-            }, 
-            {
                 "text": "troops", 
                 "size": 38
             }, 
@@ -7314,6 +7310,10 @@
             {
                 "text": "may", 
                 "size": 20
+            }, 
+            {
+                "text": "union", 
+                "size": 19
             }
         ]
     }, 
@@ -7389,10 +7389,6 @@
                 "size": 7
             }, 
             {
-                "text": "000", 
-                "size": 7
-            }, 
-            {
                 "text": "republic", 
                 "size": 7
             }, 
@@ -7438,6 +7434,10 @@
             }, 
             {
                 "text": "aid", 
+                "size": 6
+            }, 
+            {
+                "text": "forces", 
                 "size": 6
             }
         ]
@@ -7510,10 +7510,6 @@
                 "size": 28
             }, 
             {
-                "text": "000", 
-                "size": 27
-            }, 
-            {
                 "text": "however", 
                 "size": 26
             }, 
@@ -7563,6 +7559,10 @@
             }, 
             {
                 "text": "foreign", 
+                "size": 21
+            }, 
+            {
+                "text": "un", 
                 "size": 21
             }
         ]
@@ -7748,10 +7748,6 @@
                 "size": 20
             }, 
             {
-                "text": "000", 
-                "size": 18
-            }, 
-            {
                 "text": "indochina", 
                 "size": 17
             }, 
@@ -7814,6 +7810,10 @@
             {
                 "text": "u", 
                 "size": 10
+            }, 
+            {
+                "text": "hanoi", 
+                "size": 9
             }
         ]
     }, 
@@ -7873,10 +7873,6 @@
                 "size": 20
             }, 
             {
-                "text": "000", 
-                "size": 18
-            }, 
-            {
                 "text": "indochina", 
                 "size": 17
             }, 
@@ -7939,6 +7935,10 @@
             {
                 "text": "u", 
                 "size": 10
+            }, 
+            {
+                "text": "hanoi", 
+                "size": 9
             }
         ]
     }, 
@@ -7980,10 +7980,6 @@
             {
                 "text": "attacks", 
                 "size": 106
-            }, 
-            {
-                "text": "000", 
-                "size": 105
             }, 
             {
                 "text": "attack", 
@@ -8064,6 +8060,10 @@
             {
                 "text": "missiles", 
                 "size": 47
+            }, 
+            {
+                "text": "troops", 
+                "size": 46
             }
         ]
     }, 
@@ -8152,7 +8152,7 @@
             }, 
             {
                 "text": "2", 
-                "size": 24
+                "size": 22
             }, 
             {
                 "text": "stanley", 
@@ -8179,15 +8179,15 @@
                 "size": 20
             }, 
             {
-                "text": "1", 
-                "size": 19
-            }, 
-            {
                 "text": "support", 
                 "size": 19
             }, 
             {
                 "text": "also", 
+                "size": 19
+            }, 
+            {
+                "text": "united", 
                 "size": 19
             }
         ]
@@ -8242,10 +8242,6 @@
             {
                 "text": "1982", 
                 "size": 40
-            }, 
-            {
-                "text": "000", 
-                "size": 39
             }, 
             {
                 "text": "june", 
@@ -8314,6 +8310,10 @@
             {
                 "text": "army", 
                 "size": 20
+            }, 
+            {
+                "text": "three", 
+                "size": 19
             }
         ]
     }, 
@@ -8354,10 +8354,6 @@
             }, 
             {
                 "text": "fant", 
-                "size": 12
-            }, 
-            {
-                "text": "000", 
                 "size": 12
             }, 
             {
@@ -8439,6 +8435,10 @@
             {
                 "text": "force", 
                 "size": 5
+            }, 
+            {
+                "text": "armed", 
+                "size": 5
             }
         ]
     }, 
@@ -8496,10 +8496,6 @@
             {
                 "text": "cambodia", 
                 "size": 20
-            }, 
-            {
-                "text": "000", 
-                "size": 18
             }, 
             {
                 "text": "indochina", 
@@ -8564,6 +8560,10 @@
             {
                 "text": "u", 
                 "size": 10
+            }, 
+            {
+                "text": "hanoi", 
+                "size": 9
             }
         ]
     }, 
@@ -8621,10 +8621,6 @@
             {
                 "text": "cambodia", 
                 "size": 20
-            }, 
-            {
-                "text": "000", 
-                "size": 18
             }, 
             {
                 "text": "indochina", 
@@ -8689,6 +8685,10 @@
             {
                 "text": "u", 
                 "size": 10
+            }, 
+            {
+                "text": "hanoi", 
+                "size": 9
             }
         ]
     }, 
@@ -8752,10 +8752,6 @@
                 "size": 43
             }, 
             {
-                "text": "000", 
-                "size": 43
-            }, 
-            {
                 "text": "would", 
                 "size": 40
             }, 
@@ -8813,6 +8809,10 @@
             }, 
             {
                 "text": "attacks", 
+                "size": 24
+            }, 
+            {
+                "text": "israel", 
                 "size": 24
             }
         ]
@@ -9018,10 +9018,6 @@
                 "size": 28
             }, 
             {
-                "text": "000", 
-                "size": 27
-            }, 
-            {
                 "text": "would", 
                 "size": 25
             }, 
@@ -9063,6 +9059,10 @@
             }, 
             {
                 "text": "troops", 
+                "size": 21
+            }, 
+            {
+                "text": "killed", 
                 "size": 21
             }
         ]
@@ -9300,10 +9300,6 @@
                 "size": 8
             }, 
             {
-                "text": "000", 
-                "size": 7
-            }, 
-            {
                 "text": "claims", 
                 "size": 7
             }, 
@@ -9313,6 +9309,10 @@
             }, 
             {
                 "text": "line", 
+                "size": 7
+            }, 
+            {
+                "text": "2000", 
                 "size": 7
             }
         ]
@@ -9381,10 +9381,6 @@
                 "size": 32
             }, 
             {
-                "text": "000", 
-                "size": 32
-            }, 
-            {
                 "text": "would", 
                 "size": 30
             }, 
@@ -9425,10 +9421,6 @@
                 "size": 24
             }, 
             {
-                "text": "1", 
-                "size": 24
-            }, 
-            {
                 "text": "force", 
                 "size": 23
             }, 
@@ -9439,6 +9431,14 @@
             {
                 "text": "many", 
                 "size": 22
+            }, 
+            {
+                "text": "u", 
+                "size": 22
+            }, 
+            {
+                "text": "government", 
+                "size": 21
             }
         ]
     }, 
@@ -9558,11 +9558,11 @@
                 "size": 13
             }, 
             {
-                "text": "000", 
+                "text": "posts", 
                 "size": 12
             }, 
             {
-                "text": "posts", 
+                "text": "weapons", 
                 "size": 12
             }
         ]
@@ -9671,10 +9671,6 @@
                 "size": 27
             }, 
             {
-                "text": "000", 
-                "size": 27
-            }, 
-            {
                 "text": "kabul", 
                 "size": 26
             }, 
@@ -9688,6 +9684,10 @@
             }, 
             {
                 "text": "security", 
+                "size": 23
+            }, 
+            {
+                "text": "attacks", 
                 "size": 23
             }
         ]
@@ -9784,10 +9784,6 @@
                 "size": 45
             }, 
             {
-                "text": "000", 
-                "size": 44
-            }, 
-            {
                 "text": "would", 
                 "size": 43
             }, 
@@ -9813,6 +9809,10 @@
             }, 
             {
                 "text": "troops", 
+                "size": 37
+            }, 
+            {
+                "text": "later", 
                 "size": 37
             }
         ]
