@@ -10,6 +10,7 @@
         <script src="./source/datasets/war_texts_dataset/inter_war_texts.js"></script>
         <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
         <script src="./source/node_modules/gantt/gantt.js"></script>
+        <script src="./source/node_modules/gantt/gantt_refact.js"></script>
     
         <script>
             var mySVG = d3.select("body")
@@ -60,8 +61,10 @@
                 var maxDate = wars[wars.length - 1].endDate;
                 var minDate = wars[0].startDate;
 
-                var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
-                gantt(wars)
+                //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
+                //gantt(wars)
+                var gantt = new Gantt({height: 450, width:800, warNames: warNames, warClasses: warClasses, tickFormat:"%Y-%m-%d", container: mySVG});
+                gantt.display(wars);
             });
                 
         </script>
