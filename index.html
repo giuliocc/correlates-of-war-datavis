@@ -64,7 +64,7 @@
                 //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
                 //gantt(wars)
                 var gantt = new Gantt({height: 450, width:800, warNames: warNames, warClasses: warClasses, tickFormat:"%Y-%m-%d", container: mySVG});
-                gantt.display(data);
+                gantt.display(wars);
             });
                 
         </script>
