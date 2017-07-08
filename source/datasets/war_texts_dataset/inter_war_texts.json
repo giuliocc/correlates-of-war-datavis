@@ -1,4 +1,4 @@
-[
+var war_texts = [
     {
         "war_id": 1, 
         "words": []
