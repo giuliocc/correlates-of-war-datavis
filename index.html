@@ -26,41 +26,9 @@
             d3.json("./source/datasets/war_dataset/inter_war_data.json", function(json){
                 var data = json.war_data;
 
-                for (var i = data.length - 1; i >= 0; i--) {
-                    if((wars.length == 0) || (wars.filter(function(d){return d.warName === data[i].war_name;})[0] == undefined)){
-                        wars.push({
-                            "id" : data[i].war_id,
-                            "warName": data[i].war_name,
-                            "class": data[i].war_type,
-                            "startDate": new Date(data[i].start_year1, data[i].start_month1, data[i].start_day1),
-                            "endDate": new Date(data[i].end_year1, data[i].end_month1, data[i].end_day1)
-                        });
-
-                        warNames.push(data[i].war_name);
-                    }
-                    else{
-                        var i_startDate = new Date(data[i].start_year1, data[i].start_month1, data[i].start_day1);
-                        var i_endDate =  new Date(data[i].end_year1, data[i].end_month1, data[i].end_day1);
-
-                        if( i_endDate > wars[wars.length-1].endDate){
-                            wars[wars.length-1].endDate = i_endDate;
-                        }
-                        if( i_startDate < wars[wars.length-1].startDate){
-                            wars[wars.length-1].startDate = i_startDate;
-                        }
-                    }
-
-                }
-
-                wars.sort(function(a, b) {
-                    return a.endDate - b.endDate;
-                });
-                var maxDate = wars[wars.length - 1].endDate;
-                var minDate = wars[0].startDate;
-
                 var modDataset = generateClassesDataset(data)
 
-                for (var i = modDataset.length - 1; i >= 0; i--) {
+                for (var i = 0; i <= modDataset.length - 1; i++) {
                     if(!warClasses.includes(modDataset[i].class))
                         warClasses.push(modDataset[i].class);
                 }
@@ -70,7 +38,7 @@
                 var gantt = new Gantt({
                     height: 450, 
                     width: 800, 
-                    warClasses: warClasses,
+                    warClasses: warClasses.reverse(),
                     tickFormat:"%Y-%m-%d", 
                     container: mySVG});
                 gantt.display(modDataset);
