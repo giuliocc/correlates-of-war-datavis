@@ -23,7 +23,7 @@
             var warNames = [];
             var warClasses = [];
 
-            d3.json("./source/datasets/war_dataset/inter_war_data.json", function(json){
+            d3.json("https://raw.githubusercontent.com/giuliocc/correlates-of-war-visualizacao-2017-1/master/source/datasets/war_dataset/inter_war_data.json", function(json){
                 var data = json.war_data;
 
                 var modDataset = generateClassesDataset(data)
@@ -42,6 +42,7 @@
                     tickFormat:"%Y-%m-%d", 
                     container: mySVG});
                 gantt.display(modDataset);
+
             });
                 
         </script>
