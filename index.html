@@ -22,7 +22,7 @@
             var warNames = [];
             var warClasses = [];
 
-            d3.json("./source/datasets/war_dataset/inter_war_data.json", function(json){
+            d3.json("https://raw.githubusercontent.com/giuliocc/correlates-of-war-visualizacao-2017-1/master/source/datasets/war_dataset/inter_war_data.json", function(json){
                 var data = json.war_data;
 
                 for (var i = data.length - 1; i >= 0; i--) {
@@ -63,7 +63,7 @@
 
                 //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
                 //gantt(wars)
-                var gantt = new Gantt({height: 450, width:800, warNames: warNames, warClasses: warClasses, tickFormat:"%Y-%m-%d", container: mySVG});
+                var gantt = new Gantt({height: 600, width:800, warNames: warNames, warClasses: warClasses, tickFormat:"%Y-%m-%d", container: mySVG});
                 gantt.display(wars);
             });
                 
