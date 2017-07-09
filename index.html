@@ -11,6 +11,7 @@
         <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
         <script src="./source/node_modules/gantt/gantt.js"></script>
         <script src="./source/node_modules/gantt/gantt_refact.js"></script>
+        <script src="./source/node_modules/gantt/utils.js"></script>
     
         <script>
             var mySVG = d3.select("body")
@@ -49,10 +50,6 @@
                         }
                     }
 
-                    if((warClasses.length == 0) || (warClasses.filter(function(d){return d === data[i].war_type;})[0] == undefined)){
-                        warClasses.push(data[i].war_type);
-                    }
-
                 }
 
                 wars.sort(function(a, b) {
@@ -61,10 +58,22 @@
                 var maxDate = wars[wars.length - 1].endDate;
                 var minDate = wars[0].startDate;
 
+                var modDataset = generateClassesDataset(data)
+
+                for (var i = modDataset.length - 1; i >= 0; i--) {
+                    if(!warClasses.includes(modDataset[i].class))
+                        warClasses.push(modDataset[i].class);
+                }
+
                 //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
                 //gantt(wars)
-                var gantt = new Gantt({height: 450, width:800, warNames: warNames, warClasses: warClasses, tickFormat:"%Y-%m-%d", container: mySVG});
-                gantt.display(wars);
+                var gantt = new Gantt({
+                    height: 450, 
+                    width: 800, 
+                    warClasses: warClasses,
+                    tickFormat:"%Y-%m-%d", 
+                    container: mySVG});
+                gantt.display(modDataset);
             });
                 
         </script>
