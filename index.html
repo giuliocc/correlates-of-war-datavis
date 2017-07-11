@@ -1,97 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Correlates of War Datavis</title>
+	<meta charset="utf-8">
+	<title>Correlates of War Datavis</title>
 </head>
-    <body>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<body>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/d3-array.v1.min.js"></script>
-        <script src="https://d3js.org/d3-geo.v1.min.js"></script>
-        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-        <script src="./source/node_modules/d3/d3.js"></script>
-        <script src="./source/node_modules/d3-cloud/build/d3.layout.cloud.js"></script>
-        <script src="./source/datasets/war_texts_dataset/inter_war_texts.json"></script>
-        <script src="./source/datasets/war_dataset/inter_war_data.json"></script>
-        <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
-        <!-- <script src="./source/node_modules/gantt/gantt.js"></script> -->
-        <script src="./source/node_modules/gantt/gantt_refact.js"></script>
-        <script src="./source/node_modules/connection_map/geomap.js"></script>
-        <script src="./source/node_modules/scatterplot/scat.js"></script>
-        <script src="./source/node_modules/connection_map/shapes.json"></script>
-        <script src="./source/node_modules/utils.js"></script>
-    
-        <script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://d3js.org/d3-array.v1.min.js"></script>
+		<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+		<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+		<script src="./source/node_modules/d3/d3.js"></script>
+		<script src="./source/node_modules/d3-cloud/build/d3.layout.cloud.js"></script>
+		<script src="./source/datasets/war_texts_dataset/inter_war_texts.json"></script>
+		<script src="./source/datasets/war_dataset/inter_war_data.json"></script>
+		<script src="./source/node_modules/wordcloud/wordcloud.js"></script>
+		<!-- <script src="./source/node_modules/gantt/gantt.js"></script> -->
+		<script src="./source/node_modules/gantt/gantt_refact.js"></script>
+		<script src="./source/node_modules/connection_map/geomap.js"></script>
+		<script src="./source/node_modules/scatterplot/scat.js"></script>
+		<script src="./source/node_modules/connection_map/shapes.json"></script>
+		<script src="./source/node_modules/utils.js"></script>
+	
+		<script>
 
-            var svgWidth = screen.width*0.8;
-            var svgHeight = screen.height*0.8;
+			var svgWidth = screen.width*0.8;
+			var svgHeight = screen.height*0.8;
 
-            var mySVG = d3.select("body")
-                .append("svg")
-                .attr("width", svgWidth)
-                .attr("height", svgHeight);
+			var mySVG = d3.select("body")
+				.append("svg")
+				.attr("width", svgWidth)
+				.attr("height", svgHeight);
 
-            var wars = [];
-            var warNames = [];
-            var warClasses = [];
-            var data = war_data;
-            // var data = war_data;
-            
-            var dataset = generateClassesDataset(data, 15)
+			var wars = [];
+			var warNames = [];
+			var warClasses = [];
+			var data = war_data;
+			// var data = war_data;
+			
+			var dataset = generateClassesDataset(data, 15)
 
-            for (var i = 0; i <= dataset.length - 1; i++) {
-                if(!warClasses.includes(dataset[i].class))
-                    warClasses.push(dataset[i].class);
-            }
+			for (var i = 0; i <= dataset.length - 1; i++) {
+				if(!warClasses.includes(dataset[i].class))
+					warClasses.push(dataset[i].class);
+			}
 
-            //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
-            //gantt(wars)
+			//var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
+			//gantt(wars)
 
-            var geoHeightMult = 0.7;
-            var widthMult = 0.9;
+			var geoHeightMult = 0.7;
+			var widthMult = 0.9;
 
-            var geomap = new GeoMap({
-                x: 0,
-                y: 0,
-                width: svgWidth*widthMult,
-                height: svgHeight*geoHeightMult,
-                dataset: shapes,
-                container: mySVG,
-            });
+			var geomap = new GeoMap({
+				x: 0,
+				y: 0,
+				width: svgWidth*widthMult,
+				height: svgHeight*geoHeightMult,
+				dataset: shapes,
+				container: mySVG,
+			});
 
-            var scat = new Scatterplot({
-                x: svgWidth*widthMult/2,
-                y: svgHeight*geoHeightMult,
-                width: svgWidth*widthMult/2,
-                height: svgHeight*(1-geoHeightMult),
-                dataset: dataset,
-                container: mySVG,
-            });
+			var scat = new Scatterplot({
+				x: svgWidth*widthMult/2,
+				y: svgHeight*geoHeightMult,
+				width: svgWidth*widthMult/2,
+				height: svgHeight*(1-geoHeightMult),
+				dataset: dataset,
+				container: mySVG,
+			});
 
-            var gantt = new Gantt({
-                x: 0,
-                y: svgHeight*geoHeightMult,
-                width: svgWidth*(widthMult-0.1)/2,
-                height: svgHeight*(1-geoHeightMult),
-                warClasses: warClasses.reverse(),
-                tickFormat:"%Y-%m-%d", 
-                // dataset: dataset,
-                container: mySVG});
-            gantt.display(dataset);
+			var gantt = new Gantt({
+				x: 0,
+				y: svgHeight*geoHeightMult,
+				width: svgWidth*(widthMult-0.1)/2,
+				height: svgHeight*(1-geoHeightMult),
+				warClasses: warClasses.reverse(),
+				tickFormat:"%Y-%m-%d", 
+				// dataset: dataset,
+				container: mySVG});
+			gantt.display(dataset);
 
+			geomap.canvas.on("click", function() {
+				if (geomap.selection != null) {
+					var data = [];
+					console.log("teste " + geomap.selection.wars.length);
+					for (var i = 0; data.length < geomap.selection.wars.length; i++) {
+						if (geomap.selection.wars.includes(dataset[i].war_id)) {
+							console.log(dataset[i].war_id + "   " + dataset[i].war_name);
+							data.push(dataset[i]);
+						}
+					}
+					scat.setData(data);
+					gantt.setData(data);
+				}
+				else {
+					scat.setData(dataset);
+					gantt.setData(dataset);
+				}
+			});
 
+			// });
+				
+		</script>
 
-            // });
-                
-        </script>
-
-    </body>
+	</body>
 </html>
