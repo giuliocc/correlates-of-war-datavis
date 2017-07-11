@@ -106,6 +106,47 @@
 				}
 			});
 
+			// scat.color_scale().range()
+
+			mySVG.append("defs")
+				.append("linearGradient")
+				.attr("id", "legendGradientMulti")
+				.attr("x1", "0%").attr("y1", "0%")
+				.attr("x2", "100%").attr("y2", "0%")
+				.selectAll("stop")
+				.data([
+					{offset: "0%", color: "lightgreen"},
+					{offset: "100%", color: "darkgreen"} ])
+				.enter().append("stop")
+				.attr("offset", function(d) { return d.offset; })
+				.attr("stop-color", function(d) { return d.color; });
+
+			mySVG.append("rect")
+				.attr("x", svgWidth*0.22).attr("y", svgHeight*0.65)
+				.attr("width", 500).attr("height", 20)
+				.style("fill", "url(#legendGradientMulti)")
+				
+			mySVG.append("text")
+				.attr("x", svgWidth*0.39).attr("y", svgHeight*0.675)
+				.attr("fill", "white")
+				.attr("stroke", "black")
+				.attr("stroke-width", 0.2)
+				.text("Number of Participants");
+				
+			mySVG.append("text")
+				.attr("x", svgWidth*0.225).attr("y", svgHeight*0.675)
+				.attr("fill", "black")
+				.attr("stroke", "black")
+				.attr("stroke-width", 0.2)
+				.text("2");
+				
+			mySVG.append("text")
+				.attr("x", svgWidth*0.66).attr("y", svgHeight*0.675)
+				.attr("fill", "white")
+				.attr("stroke", "black")
+				.attr("stroke-width", 0.2)
+				.text("29");
+
 			// });
 				
 		</script>
