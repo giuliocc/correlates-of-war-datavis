@@ -1,4 +1,4 @@
-{"war_data": [
+var war_data = [
     {
         "war_id": 1,
         "war_name": "Franco-Spanish War",
@@ -9098,4 +9098,4 @@
         "end_year2": -8,
         "version": 4
     }
-]}
+]
