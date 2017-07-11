@@ -2,16 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Cloud Demo</title>
+    <title>Correlates of War Datavis</title>
 </head>
     <body>
         <script src="./source/node_modules/d3/d3.js"></script>
         <script src="./source/node_modules/d3-cloud/build/d3.layout.cloud.js"></script>
-        <script src="./source/datasets/war_texts_dataset/inter_war_texts.json" type="text/javascript"></script>
+        <script src="./source/datasets/war_texts_dataset/inter_war_texts.json"></script>
+        <script src="./source/datasets/war_dataset/inter_war_data.json"></script>
         <script src="./source/node_modules/wordcloud/wordcloud.js"></script>
         <script src="./source/node_modules/gantt/gantt.js"></script>
         <script src="./source/node_modules/gantt/gantt_refact.js"></script>
-        <script src="./source/node_modules/gantt/utils.js"></script>
+        <script src="./source/node_modules/utils.js"></script>
     
         <script>
             var mySVG = d3.select("body")
@@ -25,12 +26,13 @@
 
             d3.json("https://raw.githubusercontent.com/giuliocc/correlates-of-war-visualizacao-2017-1/master/source/datasets/war_dataset/inter_war_data.json", function(json){
                 var data = json.war_data;
+                // var data = war_data;
+                
+                var dataset = generateClassesDataset(data, 15)
 
-                var modDataset = generateClassesDataset(data)
-
-                for (var i = 0; i <= modDataset.length - 1; i++) {
-                    if(!warClasses.includes(modDataset[i].class))
-                        warClasses.push(modDataset[i].class);
+                for (var i = 0; i <= dataset.length - 1; i++) {
+                    if(!warClasses.includes(dataset[i].class))
+                        warClasses.push(dataset[i].class);
                 }
 
                 //var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
@@ -41,7 +43,7 @@
                     warClasses: warClasses.reverse(),
                     tickFormat:"%Y-%m-%d", 
                     container: mySVG});
-                gantt.display(modDataset);
+                gantt.display(dataset);
 
             });
                 
