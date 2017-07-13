@@ -130,25 +130,31 @@
 			})
 
             var legendScat = new Legend({
-                x: svgWidth*0.794,
+                x: svgWidth*0.780,
                 y: svgHeight*0.73,
+                width: svgWidth*0.12,
+                height: svgWidth*0.05,
                 domain: [2,29],
-                colors: ["lightgreen", "darkgreen"],
+                colors: ["tomato", "maroon"],
+                shape: "circle",
                 container: mySVG
             });
 
 
             var legendGantt = new Legend({
-                x: svgWidth*0.304,
+                x: svgWidth*0.298,
                 y: svgHeight*0.738,
+                width: svgWidth*0.11,
+                height: svgWidth*0.06,
                 domain: [2,29],
-                colors: ["lightgreen", "darkgreen"],
+                colors: ["tomato", "maroon"],
+                shape: "rect",
                 container: mySVG
             });
 
             legendScat.display_legend()
             legendGantt.display_legend()
-				
+
 		</script>
 
 	</body>
