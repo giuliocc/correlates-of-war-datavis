@@ -27,7 +27,9 @@
 		<script src="./source/node_modules/connection_map/geomap.js"></script>
 		<script src="./source/node_modules/scatterplot/scat.js"></script>
 		<script src="./source/node_modules/connection_map/shapes.json"></script>
-		<script src="./source/node_modules/utils.js"></script>
+		<script src="./source/node_modules/d3-legend/d3-legend.js"></script>
+        <script src="./source/node_modules/d3-legend/legend.js"></script>
+        <script src="./source/node_modules/utils.js"></script>
 	
 		<script>
 
@@ -126,48 +128,25 @@
 				}
 			})
 
-			// scat.color_scale().range()
+            var legendScat = new Legend({
+                x: svgWidth*0.794,
+                y: svgHeight*0.73,
+                domain: [2,29],
+                colors: ["lightgreen", "darkgreen"],
+                container: mySVG
+            });
 
-			mySVG.append("defs")
-				.append("linearGradient")
-				.attr("id", "legendGradientMulti")
-				.attr("x1", "0%").attr("y1", "0%")
-				.attr("x2", "100%").attr("y2", "0%")
-				.selectAll("stop")
-				.data([
-					{offset: "0%", color: "lightgreen"},
-					{offset: "100%", color: "darkgreen"} ])
-				.enter().append("stop")
-				.attr("offset", function(d) { return d.offset; })
-				.attr("stop-color", function(d) { return d.color; });
 
-			mySVG.append("rect")
-				.attr("x", svgWidth*0.22).attr("y", svgHeight*0.65)
-				.attr("width", 500).attr("height", 20)
-				.style("fill", "url(#legendGradientMulti)")
-				
-			mySVG.append("text")
-				.attr("x", svgWidth*0.39).attr("y", svgHeight*0.675)
-				.attr("fill", "white")
-				.attr("stroke", "black")
-				.attr("stroke-width", 0.2)
-				.text("Number of Participants");
-				
-			mySVG.append("text")
-				.attr("x", svgWidth*0.225).attr("y", svgHeight*0.675)
-				.attr("fill", "black")
-				.attr("stroke", "black")
-				.attr("stroke-width", 0.2)
-				.text("2");
-				
-			mySVG.append("text")
-				.attr("x", svgWidth*0.66).attr("y", svgHeight*0.675)
-				.attr("fill", "white")
-				.attr("stroke", "black")
-				.attr("stroke-width", 0.2)
-				.text("29");
+            var legendGantt = new Legend({
+                x: svgWidth*0.304,
+                y: svgHeight*0.738,
+                domain: [2,29],
+                colors: ["lightgreen", "darkgreen"],
+                container: mySVG
+            });
 
-			// });
+            legendScat.display_legend()
+            legendGantt.display_legend()
 				
 		</script>
 
