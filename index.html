@@ -88,6 +88,7 @@
 			gantt.display(dataset);
 
 			geomap.canvas.on("click", function() {
+				scat.selection = null;
 				if (geomap.selection != null) {
 					var data = [];
 					console.log("teste " + geomap.selection.wars.length);
@@ -102,12 +103,16 @@
 					gantt.setData(data);
 				}
 				else {
+
 					scat.setData(dataset);
 					gantt.setData(dataset);
 				}
+
+				gantt.clear();
 			});
 
 			scat.canvas.on("click", function(){
+				geomap.selection = null;
 				if (scat.selection != null){
 					var data = scat.selection;
 					var participants = {};
@@ -122,9 +127,12 @@
 				}
 
 				else {
+					gantt.setData(dataset);
 					scat.setData(dataset);
 					geomap.select([]);
 				}
+
+				gantt.clear();
 			})
 
 			// scat.color_scale().range()
