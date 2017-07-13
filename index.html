@@ -97,6 +97,7 @@
 							data.push(dataset[i]);
 						}
 					}
+					console.log(data)
 					scat.setData(data);
 					gantt.setData(data);
 				}
@@ -105,6 +106,25 @@
 					gantt.setData(dataset);
 				}
 			});
+
+			scat.canvas.on("click", function(){
+				if (scat.selection != null){
+					var data = scat.selection;
+					var participants = [];
+					participants.push.apply(participants, data.side1);
+					participants.push.apply(participants, data.side2);
+
+					participants = participants.map(function(d) { return d.code; })
+
+					geomap.select(participants);
+					gantt.setData([data]);
+				}
+
+				else {
+					scat.setData(dataset);
+					geomap.select([]);
+				}
+			})
 
 			// scat.color_scale().range()
 
