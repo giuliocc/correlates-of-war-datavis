@@ -33,8 +33,8 @@
 	
 		<script>
 
-			var svgWidth = screen.width*0.8;
-			var svgHeight = screen.height*0.8;
+			var svgWidth = screen.width*0.9;
+			var svgHeight = screen.height*0.85;
 
 			var mySVG = d3.select("body")
 				.append("svg")
@@ -57,8 +57,8 @@
 			//var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
 			//gantt(wars)
 
-			var geoHeightMult = 0.7;
-			var widthMult = 0.9;
+			var geoHeightMult = 0.55;
+			var widthMult = 1;
 
 			var geomap = new GeoMap({
 				x: 0,
@@ -90,6 +90,7 @@
 			gantt.display(dataset);
 
 			geomap.canvas.on("click", function() {
+				scat.selection = null;
 				if (geomap.selection != null) {
 					var data = [];
 					console.log("teste " + geomap.selection.wars.length);
@@ -104,12 +105,16 @@
 					gantt.setData(data);
 				}
 				else {
+
 					scat.setData(dataset);
 					gantt.setData(dataset);
 				}
+
+				gantt.clear();
 			});
 
 			scat.canvas.on("click", function(){
+				geomap.selection = null;
 				if (scat.selection != null){
 					var data = scat.selection;
 					var participants = {};
@@ -124,14 +129,17 @@
 				}
 
 				else {
+					gantt.setData(dataset);
 					scat.setData(dataset);
 					geomap.select([]);
 				}
+
+				gantt.clear();
 			})
 
             var legendScat = new Legend({
-                x: svgWidth*0.780,
-                y: svgHeight*0.73,
+                x: svgWidth*0.88,
+                y: svgHeight*0.58,
                 width: svgWidth*0.12,
                 height: svgWidth*0.05,
                 domain: [2,29],
@@ -142,8 +150,8 @@
 
 
             var legendGantt = new Legend({
-                x: svgWidth*0.298,
-                y: svgHeight*0.738,
+                x: svgWidth*0.348,
+                y: svgHeight*0.588,
                 width: svgWidth*0.11,
                 height: svgWidth*0.06,
                 domain: [2,29],
