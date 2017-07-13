@@ -110,11 +110,12 @@
 			scat.canvas.on("click", function(){
 				if (scat.selection != null){
 					var data = scat.selection;
-					var participants = [];
-					participants.push.apply(participants, data.side1);
-					participants.push.apply(participants, data.side2);
+					var participants = {};
 
-					participants = participants.map(function(d) { return d.code; })
+					participants['side1'] = data.side1.map(function(d) { return d.code; });
+					participants['side2'] = data.side2.map(function(d) { return d.code; });
+
+					console.log(participants)
 
 					geomap.select(participants);
 					gantt.setData([data]);
