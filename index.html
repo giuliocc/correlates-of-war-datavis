@@ -31,8 +31,8 @@
 	
 		<script>
 
-			var svgWidth = screen.width*0.8;
-			var svgHeight = screen.height*0.8;
+			var svgWidth = screen.width*0.9;
+			var svgHeight = screen.height*0.85;
 
 			var mySVG = d3.select("body")
 				.append("svg")
@@ -55,8 +55,8 @@
 			//var gantt = d3.gantt().height(450).width(800).warNames(warNames).warClasses(warClasses);
 			//gantt(wars)
 
-			var geoHeightMult = 0.7;
-			var widthMult = 0.9;
+			var geoHeightMult = 0.55;
+			var widthMult = 1;
 
 			var geomap = new GeoMap({
 				x: 0,
@@ -136,7 +136,7 @@
 			})
 
 			// scat.color_scale().range()
-
+/*
 			mySVG.append("defs")
 				.append("linearGradient")
 				.attr("id", "legendGradientMulti")
@@ -151,32 +151,32 @@
 				.attr("stop-color", function(d) { return d.color; });
 
 			mySVG.append("rect")
-				.attr("x", svgWidth*0.22).attr("y", svgHeight*0.65)
+				.attr("x", svgWidth*widthMult/2 - 250).attr("y", svgHeight*geoHeightMult - 0.04*svgHeight*geoHeightMult)
 				.attr("width", 500).attr("height", 20)
 				.style("fill", "url(#legendGradientMulti)")
 				
 			mySVG.append("text")
-				.attr("x", svgWidth*0.39).attr("y", svgHeight*0.675)
+				.attr("x", svgWidth*widthMult/2-62).attr("y", svgHeight*geoHeightMult - 0.007*svgHeight*geoHeightMult)
 				.attr("fill", "white")
 				.attr("stroke", "black")
 				.attr("stroke-width", 0.2)
 				.text("Number of Participants");
 				
 			mySVG.append("text")
-				.attr("x", svgWidth*0.225).attr("y", svgHeight*0.675)
+				.attr("x", svgWidth*widthMult/2-247).attr("y", svgHeight*geoHeightMult - 0.007*svgHeight*geoHeightMult)
 				.attr("fill", "black")
 				.attr("stroke", "black")
 				.attr("stroke-width", 0.2)
 				.text("2");
 				
 			mySVG.append("text")
-				.attr("x", svgWidth*0.66).attr("y", svgHeight*0.675)
+				.attr("x", svgWidth*widthMult/2+232).attr("y", svgHeight*geoHeightMult - 0.007*svgHeight*geoHeightMult)
 				.attr("fill", "white")
 				.attr("stroke", "black")
 				.attr("stroke-width", 0.2)
 				.text("29");
 
-			// });
+			// });*/
 				
 		</script>
 
